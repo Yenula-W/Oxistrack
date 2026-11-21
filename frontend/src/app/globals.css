@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body { height: 100%; }
+body { @apply bg-bg text-base text-ink antialiased; }
+/* Headings and any 600/700 text use Plus Jakarta Sans; Geist carries 400/500 body copy. */
+h1, h2, h3, h4, .font-semibold, .font-bold { font-family: "Plus Jakarta Sans", var(--font-geist-sans), system-ui, sans-serif; }
+h1, h2, h3, h4 { letter-spacing: -0.02em; }
+* { @apply border-line; }
+::selection { background: #ffffff33; }
+:focus-visible { outline: 2px solid #ededef; outline-offset: 2px; border-radius: 6px; }
+
+/* Plain metadata labels: a middot between neighbours instead of pills. */
+.meta + .meta::before { content: "·"; margin-right: .5rem; color: #71717a; font-weight: 400; }
+
+@layer utilities {
+  .scroll-thin { scrollbar-width: thin; scrollbar-color: #3f3f46 transparent; }
+  .tabular { font-variant-numeric: tabular-nums; }
+}
+
+/* React Flow theme */
+.react-flow { --xy-background-color: transparent; --xy-edge-stroke: #52525b; --xy-edge-stroke-selected: #ededef;
+  --xy-controls-button-background-color: #17171b; --xy-controls-button-background-color-hover: #27272a;
+  --xy-controls-button-color: #d4d4d8; --xy-controls-button-color-hover: #fafafa; --xy-controls-button-border-color: #27272a;
+  --xy-minimap-background-color: #111114; --xy-minimap-mask-background-color: rgba(11,11,13,.7);
+  --xy-attribution-background-color: transparent; }
+.react-flow__controls { border: 1px solid #27272a; border-radius: 10px; overflow: hidden; box-shadow: none; }
+.react-flow__minimap { border: 1px solid #27272a; border-radius: 10px; overflow: hidden; }
+.react-flow__attribution a { color: #71717a; }
+.react-flow__edge-text { fill: #a1a1aa; font-size: 9px; }
+.react-flow__edge-textbg { fill: #0b0b0d; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }

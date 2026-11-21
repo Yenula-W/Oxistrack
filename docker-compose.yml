@@ -1,0 +1,21 @@
+# Local MySQL for OxisTrack: `docker compose up -d`
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: oxistrack
+      MYSQL_USER: oxistrack
+      MYSQL_PASSWORD: oxistrack
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    ports:
+      - "3306:3306"
+    volumes:
+      - oxistrack-mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uoxistrack", "-poxistrack"]
+      interval: 5s
+      retries: 20
+volumes:
+  oxistrack-mysql:
